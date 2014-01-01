@@ -91,10 +91,10 @@ public final class SpdyTransport implements Transport {
    */
   public static List<String> writeNameValueBlock(Headers headers) {
     Set<String> names = new LinkedHashSet<String>();
-    List<String> result = new ArrayList<String>(headers.length() * 2);
-    for (int i = 0; i < headers.length(); i++) {
-      String name = headers.getFieldName(i).toLowerCase(Locale.US);
-      String value = headers.getValue(i);
+    List<String> result = new ArrayList<String>(headers.size() * 2);
+    for (int i = 0; i < headers.size(); i++) {
+      String name = headers.name(i).toLowerCase(Locale.US);
+      String value = headers.value(i);
 
       // Drop headers that are forbidden when layering HTTP over SPDY.
       if (name.equals("connection")
